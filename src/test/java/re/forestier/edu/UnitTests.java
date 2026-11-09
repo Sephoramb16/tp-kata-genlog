@@ -9,14 +9,14 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.ArrayList;
 
 public class UnitTests {
-
+    // TEST PLAYER.JAVA 
     @Test
     @DisplayName("Sample test")
     void testPlayerName() {
         player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
         assertThat(player.playerName, is("Florian"));
     }
-
+    // modifier ce test pour qu'il soit complet
     @Test
     @DisplayName("Impossible to have negative money")
     void testNegativeMoney() {
@@ -29,7 +29,7 @@ public class UnitTests {
         }
         fail();
     }
-
+    
 
      @Test 
      void addMoney(){
@@ -42,7 +42,7 @@ public class UnitTests {
       @Test
     @DisplayName("Impossible de faire baisser le niveau")
     void testRetrieveLevel(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>()level:3);
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>(),level:3);
 
 
     }
@@ -50,8 +50,31 @@ public class UnitTests {
     @Test
     @DisplayName("Impossible de faire baisser le niveau")
     void testRetrieveLevelV2(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>()level:4);
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>(),level:4);
+    }
+    @Test 
+    @DisplayName ("Impossible d'afficher le nombre d'XP ")
+    void testDisplayXP(){
+
+    }
+
+
+    // TEST UPDATEPLAYER.JAVA //
+
+    @Test 
+    @DisplayName ("le joueur est ko")
+    void testJoueurMort(){
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>(),currenthealthpoints:0);
 
 
     }
+
+   @Test 
+    @DisplayName ("")
+    void (){
+
+
+    }
+
+
 }
