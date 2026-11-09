@@ -29,14 +29,8 @@ public class UnitTests {
         }
         fail();
     }
-   // @Test
-    @DisplayName("Impossible de faire baisser le niveau")
-    void testRetrieveLevel(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
 
-       // player.getXp(200)
 
-    }
      @Test 
      void addMoney(){
         player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>());
@@ -44,4 +38,20 @@ public class UnitTests {
         assertThat(player.money, is (value: 100));
 
      }
+
+      @Test
+    @DisplayName("Impossible de faire baisser le niveau")
+    void testRetrieveLevel(){
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>()level:3);
+
+
+    }
+
+    @Test
+    @DisplayName("Impossible de faire baisser le niveau")
+    void testRetrieveLevelV2(){
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>()level:4);
+
+
+    }
 }
