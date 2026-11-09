@@ -69,12 +69,31 @@ public class UnitTests {
 
     }
 
-   @Test 
-    @DisplayName ("")
-    void (){
+    @Test 
+    @DisplayName ("currenthealpoints<playerhealpoints/2 Dwarf+ holy elixir")
+    void testhealpointDW(){
+
+
+    }
+    
+    @Test 
+    @DisplayName ("currenthealpoints<playerhealpoints/2 Adventurer")
+    void testhealpointAD(){
+
+
+    }
+ @Test 
+    @DisplayName ("currenthealpoints<playerhealpoints/2 archer + magic bow")
+    void testhealpointAC(){
 
 
     }
 
+     @Test 
+    @DisplayName ("currenthealpoints<playerhealpoints/2 else")
+    void testhealpointelse(){
+
+
+    }
 
 }
