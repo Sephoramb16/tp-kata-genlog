@@ -33,67 +33,39 @@ public class UnitTests {
 
      @Test 
      void addMoney(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>());
-        addMoney(100);
-        assertThat(player.money, is (value: 100));
-
+        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+    
+        player.addMoney(100);
+        assertThat(player.money,is (equalTo(200)));
      }
 
-      @Test
-    @DisplayName("Impossible de faire baisser le niveau")
+   /* @Test
     void testRetrieveLevel(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>(),level:3);
+        player p = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
+        p.level(2);
+        getXp()<p.levels.get;
+        assertThat(p.retrieveLevel(), is(1));
+
+        p.level=3;
+        assertThat(p.retrieveLevel(), is(2));
+        p.level=4;
+        assertThat(p.retrieveLevel(), is(3));
+        p.level=5;
+        assertThat(p.retrieveLevel(), is(4));
+       
+
+
+
+
 
 
     }
 
-    @Test
-    @DisplayName("Impossible de faire baisser le niveau")
-    void testRetrieveLevelV2(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>(),level:4);
-    }
-    @Test 
-    @DisplayName ("Impossible d'afficher le nombre d'XP ")
-    void testDisplayXP(){
-
-    }
+   @Test 
+   void
+   
 
 
-    // TEST UPDATEPLAYER.JAVA //
-
-    @Test 
-    @DisplayName ("le joueur est ko")
-    void testJoueurMort(){
-        player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>(),currenthealthpoints:0);
-
-
-    }
-
-    @Test 
-    @DisplayName ("currenthealpoints<playerhealpoints/2 Dwarf+ holy elixir")
-    void testhealpointDW(){
-
-
-    }
-    
-    @Test 
-    @DisplayName ("currenthealpoints<playerhealpoints/2 Adventurer")
-    void testhealpointAD(){
-
-
-    }
- @Test 
-    @DisplayName ("currenthealpoints<playerhealpoints/2 archer + magic bow")
-    void testhealpointAC(){
-
-
-    }
-
-     @Test 
-    @DisplayName ("currenthealpoints<playerhealpoints/2 else")
-    void testhealpointelse(){
-
-
-    }
+   */
 
 }
