@@ -1,6 +1,8 @@
 package re.forestier.edu;
 
 import org.junit.jupiter.api.*;
+
+import re.forestier.edu.rpg.UpdatePlayer;
 import re.forestier.edu.rpg.player;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -38,6 +40,32 @@ public class UnitTests {
         player.addMoney(100);
         assertThat(player.money,is (equalTo(200)));
      }
+
+     @Test
+    @DisplayName("test de retreiveLevel() pour tout les niveaux")
+    void testRetrieveLevel() {
+        player p = new player("Florian", "Grognak", "ADVENTURER", 100, new ArrayList<>());
+        
+    
+        assertThat(p.retrieveLevel(), is(1));
+
+        
+        UpdatePlayer.addXp(p, 15);
+        assertThat(p.retrieveLevel(), is(2));
+
+        
+        UpdatePlayer.addXp(p, 15);
+        assertThat(p.retrieveLevel(), is(3));
+
+
+        UpdatePlayer.addXp(p, 30);
+        assertThat(p.retrieveLevel(), is(4));
+
+        UpdatePlayer.addXp(p, 60);
+        assertThat(p.retrieveLevel(), is(5));
+    }
+/* 
+  
 
    /* @Test
     void testRetrieveLevel(){
