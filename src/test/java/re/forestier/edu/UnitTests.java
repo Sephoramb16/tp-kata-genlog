@@ -94,12 +94,16 @@ public class UnitTests {
     }
 
   // tests pour UpdatePlayer
-  
+@Test
+@DisplayName("test joueur mort")
+void testMort() {
+    player p = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>());
+    p.healthpoints = 100;
+    p.currenthealthpoints = 0;
+    UpdatePlayer.majFinDeTour(p);
+    assertThat(p.currenthealthpoints, is(0));
+}
 
-
-
-
-  
 
    /* @Test
     void testRetrieveLevel(){
