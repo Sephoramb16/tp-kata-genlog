@@ -19,6 +19,17 @@ public class UnitTests {
         assertThat(player.playerName, is("Florian"));
     }
     // modifier ce test pour qu'il soit complet
+/* 
+    @Test 
+    @DisplayName ("test d'affichage de la classe du joueur'")
+    void testAvatarClass(){
+        player p = new player("Florian", "Grognak", "ADVENTURER", 100, new ArrayList<>());
+        assertThat(p.getAvatarClass(),is("ADVENTURER"));
+
+    }
+
+*/
+
     @Test
     @DisplayName("Impossible to have negative money")
     void testNegativeMoney() {
@@ -32,8 +43,17 @@ public class UnitTests {
         fail();
     }
     
+    @Test 
+    @DisplayName ("test de removeMoney")
+    void testRemoveMoney(){
+        player p = new player("Florian", "Grognak", "ADVENTURER", 100, new ArrayList<>());
+        p.removeMoney(10);
+        assertThat(p.money,is(90));
+        }
+
 
      @Test 
+     @DisplayName ("test de addMoney()")
      void addMoney(){
         player player = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
     
@@ -41,7 +61,7 @@ public class UnitTests {
         assertThat(player.money,is (equalTo(200)));
      }
 
-     @Test
+    @Test
     @DisplayName("test de retreiveLevel() pour tout les niveaux")
     void testRetrieveLevel() {
         player p = new player("Florian", "Grognak", "ADVENTURER", 100, new ArrayList<>());
@@ -64,7 +84,21 @@ public class UnitTests {
         UpdatePlayer.addXp(p, 60);
         assertThat(p.retrieveLevel(), is(5));
     }
-/* 
+
+    @Test
+    @DisplayName ("test d'affichage des XP'") 
+    void testGetXP(){
+        player p = new player("Florian", "Grognak", "ADVENTURER", 100, new ArrayList<>()); 
+        UpdatePlayer.addXp(p, 17);
+        assertThat(p.getXp(),is(17));
+    }
+
+  // tests pour UpdatePlayer
+  
+
+
+
+
   
 
    /* @Test
