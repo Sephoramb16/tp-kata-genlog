@@ -93,7 +93,20 @@ public class UnitTests {
         assertThat(p.getXp(),is(17));
     }
 
+    @Test
+    @DisplayName("test d'une classe invalide")
+    void testInvalidAvatarClass() {
+    player p = new player("Florian", "Grognak", "MAGE", 100, new ArrayList<>());
+    assertThat(p.playerName, is(nullValue()));
+}
+
   // tests pour UpdatePlayer
+@Test 
+void level(){
+    player p = new player("Florian", "Grognak", "ADVENTURER", 0, new ArrayList<>());
+    boolean leveledUp = UpdatePlayer.addXp(p, 2);
+    assertThat(leveledUp, is(false));
+}  
 @Test
 @DisplayName("test joueur mort")
 void testMort() {
@@ -104,7 +117,65 @@ void testMort() {
     assertThat(p.currenthealthpoints, is(0));
 }
 
+@Test 
+void testRessucite(){
+    player p1 = new player("Player1", "Cas1", "ADVENTURER", 0, new ArrayList<>());
+    player p2 = new player("Player2", "Cas2", "DWARF", 0, new ArrayList<>());
+    player p3 = new player("Player3", "Cas3", "ARCHER", 0, new ArrayList<>());
+    player p4 = new player("Player4", "Cas4", "ARCHER", 0, new ArrayList<>());
+    player p5 = new player("Player5", "Cas5", "ADVENTURER", 0, new ArrayList<>());
+    player p6 = new player("Player6", "Cas6", "ADVENTURER", 0, new ArrayList<>());
+    player p7 = new player("Player7", "Cas7", "DWARF", 0, new ArrayList<>());
+    player p8 = new player("Player8", "Cas8", "ADVENTURER", 0, new ArrayList<>());
 
+    p1.healthpoints = 100;
+    p1.currenthealthpoints = 1;
+    p1.inventory.add("Holy Elixir");
+
+    p2.healthpoints = 100;
+    p2.currenthealthpoints = 1;
+    p2.inventory.add("Holy Elixir");
+
+    p3.healthpoints = 100;
+    p3.currenthealthpoints = 1;
+
+    p4.healthpoints = 200;
+    p4.currenthealthpoints = 8;
+    p4.inventory.add("Magic Bow");
+
+    p5.healthpoints = 10;
+    p5.currenthealthpoints = 10;
+
+    p6.healthpoints = 10;
+    p6.currenthealthpoints = 20;
+
+    p7.healthpoints = 100;
+    p7.currenthealthpoints = 1;
+
+    p8.currenthealthpoints = 1;
+    UpdatePlayer.addXp(p8, 30);
+
+    UpdatePlayer.majFinDeTour(p1);
+    UpdatePlayer.majFinDeTour(p2);
+    UpdatePlayer.majFinDeTour(p3);
+    UpdatePlayer.majFinDeTour(p4);
+    UpdatePlayer.majFinDeTour(p5);
+    UpdatePlayer.majFinDeTour(p6);
+    UpdatePlayer.majFinDeTour(p7);
+    UpdatePlayer.majFinDeTour(p8);
+
+    assertThat(p1.currenthealthpoints, is(2));
+    assertThat(p2.currenthealthpoints, is(3));
+    assertThat(p3.currenthealthpoints, is(2));
+    assertThat(p4.currenthealthpoints, is(9));
+    assertThat(p5.currenthealthpoints,is(10));
+    assertThat(p6.currenthealthpoints,is(10));
+
+
+
+
+}
+}
    /* @Test
     void testRetrieveLevel(){
         player p = new player("Florian", "Grognak le barbare", "ADVENTURER", 100, new ArrayList<>());
@@ -134,4 +205,4 @@ void testMort() {
 
    */
 
-}
+
