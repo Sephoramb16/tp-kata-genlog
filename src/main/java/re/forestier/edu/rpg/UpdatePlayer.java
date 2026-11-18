@@ -20,8 +20,8 @@ public class UpdatePlayer {
         adventurerMap.put(1, adventurerLevel1);
 
         HashMap<String, Integer> adventurerLevel2 = new HashMap<>();
-        adventurerLevel1.put("INT", 2);
-        adventurerLevel1.put("CHA", 3);
+        adventurerLevel2.put("INT", 2);
+        adventurerLevel2.put("CHA", 3);
         adventurerMap.put(2, adventurerLevel2);
 
         HashMap<String, Integer> adventurerLevel3 = new HashMap<>();
@@ -108,7 +108,7 @@ public class UpdatePlayer {
             // Give a random object
             ;
             Random random = new Random();
-            player.inventory.add(objectList[random.nextInt(objectList.length - 0) + 0]);
+            player.inventory.add(objectList[random.nextInt(objectList.length)]);
 
             // Add/upgrade abilities to player
             HashMap<String, Integer> abilities = abilitiesPerTypeAndLevel().get(player.getAvatarClass()).get(newLevel);
@@ -133,10 +133,10 @@ public class UpdatePlayer {
                     if(player.inventory.contains("Holy Elixir")) {
                         player.currenthealthpoints+=1;
                     }
-                    player.currenthealthpoints+=1;
-                } else if(player.getAvatarClass().equals("ADVENTURER")) {
+                    player.currenthealthpoints+=1;} 
+                    /* else if(player.getAvatarClass().equals("ADVENTURER")) {
                     player.currenthealthpoints+=2;
-                }
+                }*/
 
 
                 if(player.getAvatarClass().equals("ARCHER")) {
@@ -151,16 +151,14 @@ public class UpdatePlayer {
                     player.currenthealthpoints-=1;
                 }
             }
-        } else if(player.currenthealthpoints >= player.healthpoints/2){
-            if(player.currenthealthpoints >= player.healthpoints) {
-                player.currenthealthpoints = player.healthpoints;
+        } else{
+            player.currenthealthpoints = Math.min(player.currenthealthpoints, player.healthpoints);
                 return;
             }
         }
 
 
-        if(player.currenthealthpoints >= player.healthpoints) {
+       /* if(player.currenthealthpoints >= player.healthpoints) {
             player.currenthealthpoints = player.healthpoints;
-        }
+        }*/
     }
-}

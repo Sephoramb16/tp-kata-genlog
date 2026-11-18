@@ -48,8 +48,8 @@ public class UnitTests {
     @DisplayName ("test de removeMoney")
     void testRemoveMoney(){
         player p = new player("Florian", "Grognak", "ADVENTURER", 100, new ArrayList<>());
-        p.removeMoney(10);
-        assertThat(p.money,is(90));
+        p.removeMoney(100);
+        assertThat(p.money,is(0));
         }
 
 
@@ -71,18 +71,18 @@ public class UnitTests {
         assertThat(p.retrieveLevel(), is(1));
 
         
-        UpdatePlayer.addXp(p, 15);
+        UpdatePlayer.addXp(p, 10);
         assertThat(p.retrieveLevel(), is(2));
 
         
-        UpdatePlayer.addXp(p, 15);
+        UpdatePlayer.addXp(p, 17);
         assertThat(p.retrieveLevel(), is(3));
 
 
         UpdatePlayer.addXp(p, 30);
         assertThat(p.retrieveLevel(), is(4));
 
-        UpdatePlayer.addXp(p, 60);
+        UpdatePlayer.addXp(p, 54);
         assertThat(p.retrieveLevel(), is(5));
     }
 
@@ -112,17 +112,34 @@ void testUpdatePlayer(){
 @Test 
 void level(){
     player p = new player("Florian", "Grognak", "ADVENTURER", 0, new ArrayList<>());
+    
     boolean leveledUp = UpdatePlayer.addXp(p, 2);
-    assertThat(leveledUp, is(false));
+    assertThat(leveledUp,is(false));
+    assertThat(p.getXp(),is(2));
+    assertThat(p.inventory.size(),is(0));
+    assertThat(p.abilities.get("INT"),is(1));
+    
+    boolean leveledUp2 = UpdatePlayer.addXp(p, 8);
+    assertThat(leveledUp2,is(true));
+    assertThat(p.inventory.size(),is(1));
+    assertThat(p.abilities.get("INT"),is(2));
 }  
+
 @Test
 @DisplayName("test joueur mort")
 void testMort() {
+    var out = new java.io.ByteArrayOutputStream();
+    System.setOut(new java.io.PrintStream(out));
+
     player p = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>());
     p.healthpoints = 100;
     p.currenthealthpoints = 0;
     UpdatePlayer.majFinDeTour(p);
-    assertThat(p.currenthealthpoints, is(0));
+
+
+    assertThat(p.currenthealthpoints,is(0));
+    assertThat(out.toString().trim(), is("Le joueur est KO !"));
+
 }
 
 @Test 
@@ -135,7 +152,7 @@ void testRessucite(){
     player p6 = new player("Player6", "Cas6", "ADVENTURER", 0, new ArrayList<>());
     player p7 = new player("Player7", "Cas7", "DWARF", 0, new ArrayList<>());
     player p8 = new player("Player8", "Cas8", "ADVENTURER", 0, new ArrayList<>());
-
+    player p9 = new player("Player9", "Cas9", "ADVENTURER", 0, new ArrayList<>());
     p1.healthpoints = 100;
     p1.currenthealthpoints = 1;
     p1.inventory.add("Holy Elixir");
@@ -147,8 +164,8 @@ void testRessucite(){
     p3.healthpoints = 100;
     p3.currenthealthpoints = 1;
 
-    p4.healthpoints = 200;
-    p4.currenthealthpoints = 8;
+    p4.healthpoints = 100;
+    p4.currenthealthpoints = 16;
     p4.inventory.add("Magic Bow");
 
     p5.healthpoints = 10;
@@ -164,6 +181,10 @@ void testRessucite(){
     p8.currenthealthpoints = 1;
     UpdatePlayer.addXp(p8, 30);
 
+    p9.healthpoints = 100;
+    p9.currenthealthpoints = 50;
+    
+
     UpdatePlayer.majFinDeTour(p1);
     UpdatePlayer.majFinDeTour(p2);
     UpdatePlayer.majFinDeTour(p3);
@@ -172,15 +193,17 @@ void testRessucite(){
     UpdatePlayer.majFinDeTour(p6);
     UpdatePlayer.majFinDeTour(p7);
     UpdatePlayer.majFinDeTour(p8);
+    UpdatePlayer.majFinDeTour(p9);
 
     assertThat(p1.currenthealthpoints, is(2));
     assertThat(p2.currenthealthpoints, is(3));
     assertThat(p3.currenthealthpoints, is(2));
-    assertThat(p4.currenthealthpoints, is(9));
+    assertThat(p4.currenthealthpoints, is(18));
     assertThat(p5.currenthealthpoints,is(10));
     assertThat(p6.currenthealthpoints,is(10));
     assertThat(p7.currenthealthpoints,is(2));
     assertThat(p8.currenthealthpoints,is(3));
+    assertThat(p9.currenthealthpoints, is(50));
 
 
 
