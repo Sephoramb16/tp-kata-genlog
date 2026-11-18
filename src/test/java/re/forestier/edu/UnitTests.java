@@ -2,6 +2,7 @@ package re.forestier.edu;
 
 import org.junit.jupiter.api.*;
 
+import re.forestier.edu.rpg.Affichage;
 import re.forestier.edu.rpg.UpdatePlayer;
 import re.forestier.edu.rpg.player;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -101,6 +102,13 @@ public class UnitTests {
 }
 
   // tests pour UpdatePlayer
+
+
+@Test 
+void testUpdatePlayer(){
+    UpdatePlayer updatePlayer =new UpdatePlayer();
+    assertThat(updatePlayer, is(notNullValue()));
+}  
 @Test 
 void level(){
     player p = new player("Florian", "Grognak", "ADVENTURER", 0, new ArrayList<>());
@@ -152,6 +160,7 @@ void testRessucite(){
     p7.healthpoints = 100;
     p7.currenthealthpoints = 1;
 
+    p8.healthpoints = 100;
     p8.currenthealthpoints = 1;
     UpdatePlayer.addXp(p8, 30);
 
@@ -170,9 +179,30 @@ void testRessucite(){
     assertThat(p4.currenthealthpoints, is(9));
     assertThat(p5.currenthealthpoints,is(10));
     assertThat(p6.currenthealthpoints,is(10));
+    assertThat(p7.currenthealthpoints,is(2));
+    assertThat(p8.currenthealthpoints,is(3));
 
 
 
+
+}
+
+// test affichage 
+
+@Test 
+void testAffichage(){
+    Affichage affichage =new Affichage();
+    assertThat(affichage, is(notNullValue()));
+}
+
+@Test 
+void testAfficherJouer(){
+    player p = new player("Florian", "Grognak le barbare", "ADVENTURER", 0, new ArrayList<>());
+    p.inventory.add("Holy Elixir");
+
+    String res = Affichage.afficherJoueur(p);
+    assertThat(res,containsString("Florian"));
+    assertThat(res,containsString("Holy Elixir"));
 
 }
 }
