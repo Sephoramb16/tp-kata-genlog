@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class UpdatePlayer {
 
-    private final static String[] objectList = {"Lookout Ring : Prevents surprise attacks","Scroll of Stupidity : INT-2 when applied to an enemy", "Draupnir : Increases XP gained by 100%", "Magic Charm : Magic +10 for 5 rounds", "Rune Staff of Curse : May burn your ennemies... Or yourself. Who knows?", "Combat Edge : Well, that's an edge", "Holy Elixir : Recover your HP"
+    private  static  final String[] objectList = {"Lookout Ring : Prevents surprise attacks","Scroll of Stupidity : INT-2 when applied to an enemy", "Draupnir : Increases XP gained by 100%", "Magic Charm : Magic +10 for 5 rounds", "Rune Staff of Curse : May burn your ennemies... Or yourself. Who knows?", "Combat Edge : Well, that's an edge", "Holy Elixir : Recover your HP"
     };
 
     public static HashMap<String, HashMap<Integer, HashMap<String, Integer>>> abilitiesPerTypeAndLevel() {
@@ -106,7 +106,7 @@ public class UpdatePlayer {
         if (newLevel != currentLevel) {
             // Player leveled-up!
             // Give a random object
-            ;
+            
             Random random = new Random();
             player.inventory.add(objectList[random.nextInt(objectList.length)]);
 
@@ -134,10 +134,7 @@ public class UpdatePlayer {
                         player.currenthealthpoints+=1;
                     }
                     player.currenthealthpoints+=1;} 
-                    /* else if(player.getAvatarClass().equals("ADVENTURER")) {
-                    player.currenthealthpoints+=2;
-                }*/
-
+                    
 
                 if(player.getAvatarClass().equals("ARCHER")) {
                     player.currenthealthpoints+=1;
@@ -151,14 +148,12 @@ public class UpdatePlayer {
                     player.currenthealthpoints-=1;
                 }
             }
-        } else{
+        } 
+        else{
             player.currenthealthpoints = Math.min(player.currenthealthpoints, player.healthpoints);
-                return;
             }
         }
 
 
-       /* if(player.currenthealthpoints >= player.healthpoints) {
-            player.currenthealthpoints = player.healthpoints;
-        }*/
+     
     }
